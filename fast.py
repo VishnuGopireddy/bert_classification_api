@@ -10,7 +10,7 @@ class Models(str, Enum):
     Bert = 'Bert'
     GPT = 'GPT2'
     seq_seq = 'seq-seq'
-
+    
 class Item(BaseModel):
     name: str
     age: int

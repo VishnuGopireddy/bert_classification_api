@@ -10,11 +10,11 @@ class Infer_bert:
         # self.net = Net(pre_trained=model_path)
         self.net = Net()
         self.net.load_state_dict(torch.load(model_path, map_location='cuda'))
-        self.net.to('cuda')
+        self.net.to('cpu')
 
 
     def predict(self, sent):
-        self.tokens = self.tokenizer.encode_plus(sent, max_length=200, return_tensors='pt', padding='max_length').to('cuda')
+        self.tokens = self.tokenizer.encode_plus(sent, max_length=200, return_tensors='pt', padding='max_length').to('cpu')
         label = self.net(self.tokens['input_ids'], self.tokens['attention_mask'])
         return label.argmax().detach().cpu().numpy()
 
